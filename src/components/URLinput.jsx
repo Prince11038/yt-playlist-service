@@ -31,11 +31,13 @@ export default function URLinput() {
         Calculate
       </button>
 
-      {result && <p>Total videos: {result.length}</p>}
+      {result && <p>Total videos: {result.videos.length}</p>}
+
+      {result && <p>Total Duration: {result.totalDuration}</p>}
 
       {result && (
         <div>
-          {result.map((item, index) => (
+          {result.videos.map((item, index) => (
             <li
              key={index}>
               {index+1 + ". "}
