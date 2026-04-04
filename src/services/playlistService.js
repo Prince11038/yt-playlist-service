@@ -22,31 +22,44 @@ export async function fetchPlaylistData(url) {
 
     const data = await response.json()
 
-    // collect videos
     allVideos = [...allVideos, ...data.items]
 
-    // update token
     nextPageToken = data.nextPageToken || null
 
   } while (nextPageToken)
 
   const videoIds = allVideos.map(items=>items.contentDetails.videoId)
-  console.log(videoIds)
-  const idString = videoIds.join(",")
 
-  console.log("ID String:", idString)
+  // ✅ FIX STARTS HERE (batching)
+  function chunkArray(array, size) {
+    const result = []
+    for (let i = 0; i < array.length; i += size) {
+      result.push(array.slice(i, i + size))
+    }
+    return result
+  }
 
-  const durationRes = await fetch(
-    `https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=${idString}&key=${API_KEY}`
-  )
+  const videoIdChunks = chunkArray(videoIds, 50)
 
-  const durationData = await durationRes.json()
+  let durations = []
 
-  console.log("Duration Data:", durationData)
+  for (const chunk of videoIdChunks) {
+    const idString = chunk.join(",")
 
-  
-  const durations = durationData.items.map(item => item.contentDetails.duration)
-  console.log("Durations:", durations)
+    const durationRes = await fetch(
+      `https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=${idString}&key=${API_KEY}`
+    )
+
+    const durationData = await durationRes.json()
+
+    const chunkDurations = durationData.items.map(
+      item => item.contentDetails.duration
+    )
+
+    durations = [...durations, ...chunkDurations]
+  }
+  // ✅ FIX ENDS HERE
+
 
   function convertToSeconds(duration){
     const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
@@ -64,7 +77,7 @@ export async function fetchPlaylistData(url) {
     const hours = Math.floor(totalSeconds / 3600)
     const minutes = Math.floor((totalSeconds % 3600) / 60)
     const seconds = totalSeconds % 60
-
+  
     return `${hours}h ${minutes}m ${seconds}s`
   }
 
@@ -72,7 +85,7 @@ export async function fetchPlaylistData(url) {
 
   return {
     videos: allVideos,
-    totalDuration: formattedTime
+    totalDuration: formattedTime,
+    totalSeconds: totalSeconds
   }
-
 }
