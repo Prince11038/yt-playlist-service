@@ -1,16 +1,32 @@
-# React + Vite
+# Playlist Length
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project uses React, Vite, and Tailwind CSS v4.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+## GitHub Pages deployment
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This repo is configured for:
 
-## Expanding the ESLint configuration
+`https://prince11038.github.io/yt-playlist-service/`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Important details:
+
+- `vite.config.js` uses `base: "/yt-playlist-service/"`, which must match the repository name.
+- `npm run deploy` now builds first and then publishes the `dist` folder.
+- In GitHub, open `Settings -> Pages`.
+- Set `Source` to `Deploy from a branch`.
+- Select branch `gh-pages` and folder `/ (root)`.
+
+If Pages is serving from `main` instead of `gh-pages`, the hosted site can load without the correct built assets and look different from the local version.
+
+## Deploy
+
+```bash
+npm run deploy
+```

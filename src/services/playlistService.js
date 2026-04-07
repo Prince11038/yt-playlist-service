@@ -83,9 +83,12 @@ export async function fetchPlaylistData(url) {
 
   const formattedTime = formatTime(totalSeconds)
 
+  const averageDuration = totalSeconds / allVideos.length
+
   return {
     videos: allVideos,
     totalDuration: formattedTime,
-    totalSeconds: totalSeconds
+    totalSeconds: totalSeconds,
+    averageDuration: averageDuration,
   }
 }
