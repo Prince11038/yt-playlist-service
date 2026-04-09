@@ -1,32 +1,32 @@
-# Playlist Length
+# 🎬 YouTube Playlist Analyzer
 
-This project uses React, Vite, and Tailwind CSS v4.
+A React app that gives you everything about a YouTube playlist in one click — total duration, all video titles, and how long it'll take at different playback speeds.
 
-## Local development
+## ✨ Features
+
+- 📋 **Full Video List** — See all video titles in the playlist
+- ⏱ **Total Duration** — Exact playlist length calculated instantly
+- ⚡ **Speed Calculator** — View adjusted time at 1.25x, 1.5x, and 2x speed
+- 🔗 **Just paste the link** — No login, no setup, just works
+
+## 🛠 Tech Stack
+
+`React.js` `YouTube Data API v3` `JavaScript` `CSS` `tailwind`
+
+## 🚀 Live Demo
+
+> [!WARNING]
+> This project is currently under development and not yet complete. Core functionality has been implemented.
+
+🌐 [Live Site](https://prince11038.github.io/yt-playlist-service/)
+
+## 🔧 Run Locally
 
 ```bash
+git clone https://github.com/Prince11038/your-repo-name
+cd your-repo-name
 npm install
-npm run dev
+npm start
 ```
 
-## GitHub Pages deployment
-
-This repo is configured for:
-
-`https://prince11038.github.io/yt-playlist-service/`
-
-Important details:
-
-- `vite.config.js` uses `base: "/yt-playlist-service/"`, which must match the repository name.
-- `npm run deploy` now builds first and then publishes the `dist` folder.
-- In GitHub, open `Settings -> Pages`.
-- Set `Source` to `Deploy from a branch`.
-- Select branch `gh-pages` and folder `/ (root)`.
-
-If Pages is serving from `main` instead of `gh-pages`, the hosted site can load without the correct built assets and look different from the local version.
-
-## Deploy
-
-```bash
-npm run deploy
-```
+> Add your YouTube Data API key in `.env` as `REACT_APP_YT_API_KEY`
