@@ -1,3 +1,6 @@
+> [!WARNING]
+> This project is currently under development and not yet complete. Core functionality has been implemented.
+
 # 🎬 YouTube Playlist Analyzer
 
 A React app that gives you everything about a YouTube playlist in one click — total duration, all video titles, and how long it'll take at different playback speeds.
@@ -14,9 +17,6 @@ A React app that gives you everything about a YouTube playlist in one click — 
 `React.js` `YouTube Data API v3` `JavaScript` `CSS` `tailwind`
 
 ## 🚀 Live Demo
-
-> [!WARNING]
-> This project is currently under development and not yet complete. Core functionality has been implemented.
 
 🌐 [Live Site](https://prince11038.github.io/yt-playlist-service/)
 
